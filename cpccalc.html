@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your 7th CPC salary easily with our stunning, user-friendly calculator. Includes HRA, TA, DA, and a helpful user tutorial for beginners.">
+    <meta name="keywords" content="7th CPC calculator, salary calculator, pay commission calculator, government salary, HRA, TA, DA, user tutorial, attractive UI">
+    <meta name="author" content="xAI">
+    <title>7th CPC Salary Calculator - Stunning & Easy to Use</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff6f61, #88d3ff);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6f61;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            animation: bounce 1.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .calculator, .result, .ad-space, .tutorial {
+            padding: 25px;
+            border-radius: 15px;
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .calculator:hover, .result:hover, .ad-space:hover, .tutorial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        select:focus, input[type="number"]:focus {
+            border-color: #88d3ff;
+            box-shadow: 0 0 10px rgba(136, 211, 255, 0.5);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #ff6f61, #88d3ff);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 111, 97, 0.5);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #e65b50, #6ac5ff);
+            transform: scale(1.05);
+        }
+
+        .result {
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+        }
+
+        .result h2 {
+            color: #ff6f61;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .result p {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 12px 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .ad-space {
+            background: #f0f2f5;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            background: linear-gradient(135deg, #f0f2f5, #e9ecef);
+        }
+
+        .ad-space p {
+            color: #777;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .tutorial {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 6px solid #ff6f61;
+            padding: 25px;
+        }
+
+        .tutorial h2 {
+            color: #ff6f61;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .tutorial p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .tutorial ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .tutorial li {
+            margin-bottom: 15px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .tutorial li:before {
+            content: "✨";
+            color: #ff6f61;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .sections {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .calculator, .result, .ad-space, .tutorial {
+                min-width: auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>7th CPC Salary Calculator</h1>
+        
+        <div class="sections">
+            <div class="calculator">
+                <label for="payLevel">Select your Pay Level (AGP, Faculty, GP, Other Employee):</label>
+                <select id="payLevel">
+                    <option value="18000">Level 1 (AGP 6000, Faculty)</option>
+                    <option value="19900">Level 2 (GP 5400, Other Employee)</option>
+                    <option value="21700">Level 3 (AGP 7000, Faculty)</option>
+                    <option value="25500">Level 4 (GP 6600, Other Employee)</option>
+                    <option value="29200">Level 5 (AGP 8000, Faculty)</option>
+                    <option value="35400">Level 6 (GP 7600, Other Employee)</option>
+                    <option value="44900">Level 7 (AGP 9000, Faculty)</option>
+                    <option value="47600">Level 8 (GP 8700, Other Employee)</option>
+                    <option value="53100">Level 9 (AGP 10000, Faculty)</option>
+                    <option value="56100">Level 10 (No AGP/GP, Senior Roles)</option>
+                </select>
+
+                <label for="basicPay">Select Basic Pay:</label>
+                <input type="number" id="basicPay" placeholder="Enter your basic pay" required>
+
+                <label for="cityTypeHRA">Select the type of your City for HRA (if not applicable, select "No HRA"):</label>
+                <select id="cityTypeHRA">
+                    <option value="0.27">Metro City (27% HRA)</option>
+                    <option value="0.18">Non-Metro City (18% HRA)</option>
+                    <option value="0.09">Rural Area (9% HRA)</option>
+                    <option value="0">No HRA</option>
+                </select>
+
+                <label for="cityTypeTA">Select the type of your City for TA (if not applicable, select "No TA"):</label>
+                <select id="cityTypeTA">
+                    <option value="3600">Metro City (TA 3600)</option>
+                    <option value="1800">Non-Metro City (TA 1800)</option>
+                    <option value="900">Rural Area (TA 900)</option>
+                    <option value="0">No TA</option>
+                </select>
+
+                <label for="daPercentage">Select DA Percentage (e.g., 53% as of July 2024):</label>
+                <select id="daPercentage">
+                    <option value="0.53">53% (Current as of July 2024)</option>
+                    <option value="0.50">50%</option>
+                    <option value="0.55">55%</option>
+                </select>
+
+                <button onclick="calculateSalary()">Calculate Salary</button>
+            </div>
+
+            <div class="result">
+                <h2>Your Salary Breakdown</h2>
+                <p>Basic Pay: <span id="displayBasic">₹0</span></p>
+                <p>HRA: <span id="displayHRA">₹0</span></p>
+                <p>TA: <span id="displayTA">₹0</span></p>
+                <p>DA: <span id="displayDA">₹0</span></p>
+                <p>Total Salary: <span id="displayTotal">₹0</span></p>
+            </div>
+
+            <div class="ad-space">
+                <!-- Google AdSense Code (Replace with your actual ad code) -->
+                <p>Ad Space - Google Ads Here</p>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Sample Ad Unit -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+        <div class="tutorial">
+            <h2>How to Use the 7th CPC Salary Calculator</h2>
+            <p>Welcome to our stunning 7th CPC Salary Calculator! Follow these simple steps to get your salary breakdown in seconds:</p>
+            <ul>
+                <li><strong>Select Your Pay Level:</strong> Pick your pay level based on your role (e.g., Faculty with AGP or Other Employee with GP) to set the base for your calculation.</li>
+                <li><strong>Enter Your Basic Pay:</strong> Type your current basic pay in the field provided—it’s the starting point for your salary.</li>
+                <li><strong>Choose City Type for HRA:</strong> Select your city (Metro, Non-Metro, Rural, or No HRA) to calculate your House Rent Allowance based on location.</li>
+                <li><strong>Choose City Type for TA:</strong> Pick your city type (Metro, Non-Metro, Rural, or No TA) to determine your Transport Allowance, a fixed amount by location.</li>
+                <li><strong>Select DA Percentage:</strong> Choose the current Dearness Allowance (e.g., 53% as of July 2024) to adjust for inflation in your salary.</li>
+                <li><strong>Click Calculate:</strong> Hit the “Calculate Salary” button to see a detailed, colorful breakdown of your salary components!</li>
+            </ul>
+            <p>That’s all it takes! Your results will appear instantly, and you can revisit this guide anytime for help. Enjoy the brilliance of our calculator!</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateSalary() {
+            const payLevel = parseFloat(document.getElementById('payLevel').value);
+            let basicPay = parseFloat(document.getElementById('basicPay').value);
+            const cityTypeHRA = parseFloat(document.getElementById('cityTypeHRA').value);
+            const cityTypeTA = parseFloat(document.getElementById('cityTypeTA').value);
+            const daPercentage = parseFloat(document.getElementById('daPercentage').value);
+
+            if (!basicPay || basicPay <= 0) {
+                alert("Please enter a valid basic pay!");
+                return;
+            }
+
+            const hra = basicPay * cityTypeHRA; // House Rent Allowance
+            const ta = cityTypeTA; // Transport Allowance
+            const da = basicPay * daPercentage; // Dearness Allowance
+            const totalSalary = basicPay + hra + ta + da;
+
+            document.getElementById('displayBasic').textContent = `₹${basicPay.toFixed(2)}`;
+            document.getElementById('displayHRA').textContent = `₹${hra.toFixed(2)}`;
+            document.getElementById('displayTA').textContent = `₹${ta.toFixed(2)}`;
+            document.getElementById('displayDA').textContent = `₹${da.toFixed(2)}`;
+            document.getElementById('displayTotal').textContent = `₹${totalSalary.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
